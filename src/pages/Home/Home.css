@@ -1,0 +1,76 @@
+.box{
+    width: 500px;
+    height: 400px;;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -250px;
+    position: fixed;
+    background: #87CEFA;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column
+}
+.css-1orzy9s{
+    background: white !important;
+    margin: 15px;
+    border-radius: 8px;
+}
+.closeIcon{
+    margin-top: 20px;
+    position: absolute;
+    margin-left: -45px;
+}
+.css-7mt4h1-MuiInputBase-root{
+    width: 30em;
+}
+.search{
+    display: flex;
+    flex-direction: row;
+}
+.bottom-sec{
+    text-align: center
+}
+.locationIcon{
+    font-size: 2rem !important;
+    margin-top: 20px !important;
+}
+.wave{
+    opacity: 0.3;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    background: white;
+    width: 50rem;
+    height: 50rem;
+    margin-left: -25rem;
+    margin-top: -10rem;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 300ms infinite linear;
+    z-index: 1;
+}
+.wave .-three{
+    animation: drift 500ms infinite linear;
+    z-index: 2 !important;
+    opacity: 0.2;
+}
+.wave .-two{
+    animation: drift 700ms infinite linear;
+    opacity: 0.1;
+    z-index: 3 !important;
+}
+.wave .-one{
+    animation: drift 700ms infinite linear;
+    opacity: 0.4;
+    z-index: 4 !important;
+}
+@keyframes drift{
+    from{
+        transform: rotate(0deg)
+    }
+    from {
+        transform: rotate(20deg)
+    }
+   
+}
