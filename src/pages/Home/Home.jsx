@@ -6,7 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import service from '../../service/service'
+import {getCity} from '../../service/service'
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -52,21 +52,21 @@ const Search = styled('div')(({ theme }) => ({
 
 export default function BoxSx() {
 
-  const obj = new service();
-
     const[city,setCity]=useState(null);
-    const[search,setSearch]=useState("Mumbai");
-    
-    
-  useEffect(() => {
-    obj.getCity(search).then((response)=>{
-    console.log(response);
-    
-}).catch((error)=>{
-    console.log(error);
-   })
-})
+    const[search,setSearch]=useState();
 
+console.log(search)
+
+const searchCity=(e)=>{
+  if (e.key === 'Enter') {
+  console.log(e.target.value)
+setSearch({
+  search:e.target.value})
+ getCity(search.search)
+}
+}
+
+console.log(search)
   return (
       <div className="container">
           <Box className="box">
@@ -77,7 +77,9 @@ export default function BoxSx() {
                     </SearchIconWrapper>
                     <StyledInputBase
                     placeholder="Search…"
+                    name="search"
                     inputProps={{ 'aria-label': 'search' }}
+                    onKeyDown={(e)=>searchCity(e)}
                     />
                 </Search>
                 <div ><CloseIcon className="closeIcon"/></div>
@@ -85,7 +87,7 @@ export default function BoxSx() {
             
             <div className="bottom-sec">
                 <h2 className="location">
-                <LocationOnIcon className="locationIcon"/>Pune</h2>
+                <LocationOnIcon className="locationIcon"/></h2>
                 <h1 className="temp">London</h1>
                 <h3 className="tempmin_max"> Min : 5.34 Cel | Max : 6.45 Cel</h3>
             </div>
