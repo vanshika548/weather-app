@@ -1,3 +1,5 @@
+
+   
 import React,{useState,useEffect} from 'react';
 import Box from '@mui/material/Box';
 import '../Home/Home.css';
@@ -60,11 +62,17 @@ console.log(search)
 const searchCity=(e)=>{
   if (e.key === 'Enter') {
   console.log(e.target.value)
-setSearch({
-  search:e.target.value})
- getCity(search.search)
+setSearch(
+  e.target.value)
 }
 }
+
+useEffect(()=>{
+  const getData=search && getCity(search).then((response)=>{
+   setCity(response)
+  });
+ 
+},[search])
 
 console.log(search)
   return (
@@ -84,17 +92,26 @@ console.log(search)
                 </Search>
                 <div ><CloseIcon className="closeIcon"/></div>
           </div>
-            
-            <div className="bottom-sec">
+            {!city ? (
+              <p>No Data Found</p>
+            ): (
+              <div>
+                <div className="bottom-sec">
                 <h2 className="location">
-                <LocationOnIcon className="locationIcon"/></h2>
-                <h1 className="temp">London</h1>
-                <h3 className="tempmin_max"> Min : 5.34 Cel | Max : 6.45 Cel</h3>
+                <LocationOnIcon className="locationIcon"/>{search}</h2>
+                <h1 className="temp">Temp: {city.main.temp}</h1>
+                <h3 className="tempmin_max"> Wind Speed : {city.wind.speed} | Wind Deg : {city.wind.deg}</h3>
+                <h3 className="tempmin_max"> Min : {city.main.temp_min} Cel | Max : {city.main.temp_max} Cel</h3>
+                <h3 className="tempmin_max"> Pressure : {city.main.pressure}  | Humidity : {city.main.humidity} </h3>
             </div>
 
             <div className="wave -one"></div>
             <div className="wave -two"></div>
             <div className="wave -three"></div>
+              </div>
+              
+            )}
+            
           </Box>
       </div>
     
